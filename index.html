@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Clicker Game</title>
+  <title>Kojiro</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,37 +22,47 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
-    #clickButton {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
+    #dragonEgg {
+      width: 200px;
+      height: auto;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: transform 0.3s;
     }
-    #clickButton:hover {
-      background-color: #45a049;
+    #dragonEgg:hover {
+      transform: scale(1.1);
+    }
+    #hatchMessage {
+      font-size: 24px;
+      color: green;
+      display: none;
     }
   </style>
 </head>
 <body>
   <div id="gameContainer">
-    <h1>Simple Clicker Game</h1>
-    <p id="score">Points: 0</p>
-    <button id="clickButton">Click me!</button>
+    <h1>PALDO TAYO DITO GUYS</h1>
+    <p id="score">Progress: 0/10000</p> <!-- Show progress as a fraction -->
+    <p id="hatchMessage">Congratulations! The egg has hatched!</p>
+    <img id="dragonEgg" src="egg.png" alt="Dragon Egg">
+    <!-- Replace the src link with an actual dragon egg image URL -->
   </div>
 
   <script>
     let score = 0;
-
+    const hatchGoal = 10000; // Set the goal to 10,000 taps
     const scoreDisplay = document.getElementById("score");
-    const clickButton = document.getElementById("clickButton");
+    const dragonEgg = document.getElementById("dragonEgg");
+    const hatchMessage = document.getElementById("hatchMessage");
 
-    clickButton.addEventListener("click", () => {
+    dragonEgg.addEventListener("click", () => {
       score++;
-      scoreDisplay.textContent = `Points: ${score}`;
+      scoreDisplay.textContent = `Progress: ${score}/${hatchGoal}`; // Update the progress display
+
+      // Check if the player has reached the hatch goal
+      if (score >= hatchGoal) {
+        hatchMessage.style.display = "block"; // Show the hatch message
+        dragonEgg.style.cursor = "not-allowed"; // Disable further clicks on the egg
+      }
     });
   </script>
 </body>
